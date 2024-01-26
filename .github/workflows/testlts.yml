@@ -8,7 +8,7 @@ on:
       
 jobs:
    test-issue:
-     runs-on: [ubuntu-20.04,ubuntu-22.04, macos-12, macos-13, macos-latest, ubuntu-latest, windows-latest]
+     runs-on: [ macos-latest, ubuntu-latest, windows-latest,ubuntu-20.04,ubuntu-22.04, macos-12, macos-13]
 
      steps:
        - name: Checkout repo
