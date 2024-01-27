@@ -7,10 +7,14 @@ on:
   workflow_dispatch:
       
 jobs:
-   test-issue:
-     runs-on: [macos-latest,ubuntu-latest]
+  test-issue:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-11, macos-12, macos-13,ubuntu-20.04,ubuntu-22.04,macos-latest,windows-latest]
 
-     steps:
+    runs-on: {{matrix.os}}
+
+    steps:
        - name: Checkout repo
          uses: actions/checkout@v3
        - uses: actions/setup-node@v4
