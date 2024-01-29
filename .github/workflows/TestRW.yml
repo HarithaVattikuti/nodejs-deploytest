@@ -1,0 +1,20 @@
+name: Node.js Reusable WF test
+
+on:
+  workflow_dispatch:
+      
+jobs:
+   test-issue:
+     runs-on: [ubuntu-latest,windows-latest,macos-latest]
+
+     steps:
+       - name: Checkout repo
+         uses: actions/checkout@v3
+       - uses: actions/setup-node@v4
+         with:
+           node-version: ${{ env.NODE_VERSION }}
+           cache: 'npm'
+           cache-dependancy-path: ${{ env.repo_dir }}/package-lock.json
+       - run: |
+           npm ci
+           npm run build --if-present
