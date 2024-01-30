@@ -5,12 +5,16 @@ on:
       
 jobs:
    test-issue:
-     runs-on: ubuntu-latest
+   runs-on: ${{matrix.os}}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest,macos-latest,windows-latest]
 
      steps:
        - name: Checkout repo
          uses: actions/checkout@v4
-       - uses: HarithaVattikuti/setup-node@testreusablewf
+       - uses: HarithaVattikuti/setup-node@testrw1
          with:
            node-version: ${{ env.NODE_VERSION }}
            cache: 'npm'
