@@ -5,12 +5,11 @@ on:
       
 jobs:
    test-issue:
-   runs-on: ${{matrix.os}}
-    strategy:
+     runs-on: ${{matrix.os}}
+     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest,macos-latest,windows-latest]
-
      steps:
        - name: Checkout repo
          uses: actions/checkout@v4
