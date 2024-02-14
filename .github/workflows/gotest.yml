@@ -13,6 +13,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
-      - run: go build -o hello-world
-      - run: ./hello-world
+      - uses: actions/setup-node@v4
+      - run: npm run build
+      
