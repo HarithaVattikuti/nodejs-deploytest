@@ -13,8 +13,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip wheel
+      - uses: actions/setup-go@v5
+      - run: go build -o hello-world
+      - run: ./hello-world
