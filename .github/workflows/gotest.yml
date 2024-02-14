@@ -1,0 +1,18 @@
+name: Go lang default install
+
+
+on:
+  push:
+  workflow_dispatch:
+
+
+jobs:
+  build:
+    name: Build on macOS 13
+    runs-on: macos-13
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+      - run: go build -o hello-world
+      - run: ./hello-world
