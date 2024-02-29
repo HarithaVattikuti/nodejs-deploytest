@@ -2,7 +2,6 @@ name: Go lang default install
 
 
 on:
-  push:
   workflow_dispatch:
 
 
