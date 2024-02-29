@@ -29,3 +29,5 @@ jobs:
           python-version: "3.11"
           architecture: ${{ matrix.target.architecture }}
           cache: "poetry"
+      - run: poetry install
+
