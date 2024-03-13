@@ -1,0 +1,16 @@
+name: Test x86 Architecture
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: test node
+        uses: actions/setup-node@v4
+        with:
+           node-version: 18
+           architecture: x86
