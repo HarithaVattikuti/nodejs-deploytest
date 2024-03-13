@@ -19,3 +19,4 @@ jobs:
         with:
            node-version: ${{matrix.version}}
            architecture: x86
+      - run: npm install
