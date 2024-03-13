@@ -6,11 +6,16 @@ on:
 jobs:
   test:
     runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+         version: [18,20]
+
     steps:
       - name: checkout
         uses: actions/checkout@v4
       - name: test node
         uses: actions/setup-node@v4
         with:
-           node-version: 18
+           node-version: ${{matrix.version}}
            architecture: x86
