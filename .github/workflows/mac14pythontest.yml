@@ -1,0 +1,17 @@
+name: MacOsTest
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test
+    runs-on: macos-14
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.9
+          architecture: "x64"
+      - name: print python version
+        shell: bash
+        run: python --version
