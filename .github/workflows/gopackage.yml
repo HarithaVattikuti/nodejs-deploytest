@@ -1,0 +1,32 @@
+
+name: Generate Go.js packages
+run-name: Generate Go.js ${{ inputs.VERSION || '1.21.8' }}
+on:
+  workflow_dispatch:
+   inputs:
+      VERSION:
+        description: 'Go.js version to build and upload'
+        required: true
+        default: '1.21.8'
+      PUBLISH_RELEASES:
+        description: 'Whether to publish releases'
+        required: true
+        type: boolean
+        default: false
+  pull_request:
+    paths-ignore:
+    - 'versions-manifest.json'
+    - 'LICENSE'
+    - '**.md'
+    branches:
+    - 'main'
+
+jobs:
+  node:
+    name: Node
+    uses: aparnajyothi-y/versions-package-tools/.github/workflows/build-tool-packages.yml@node-arm64-testing
+    with:
+      tool-name: "go"
+      tool-version: ${{ inputs.VERSION || '1.21.8' }}
+      publish-release: ${{ inputs.PUBLISH_RELEASES || false }}
+    secrets: inherit
