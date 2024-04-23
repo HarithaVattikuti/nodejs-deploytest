@@ -26,6 +26,9 @@ jobs:
     uses: HarithaVattikuti/node-versions/.github/workflows/build-node-packages.yml@testnewversions
     with:
       tool-name: "node"
-      tool-version: ${{ inputs.VERSION || '16.20.0' }}
-      publish-release: ${{ inputs.PUBLISH_RELEASES || false }}
+      VERSION: ${{ inputs.VERSION || '16.20.0' }}
+      PUBLISH_RELEASES: ${{ inputs.PUBLISH_RELEASES || false }}
+
+      #tool-version: ${{ inputs.VERSION || '16.20.0' }}
+      #publish-release: ${{ inputs.PUBLISH_RELEASES || false }}
     secrets: inherit
