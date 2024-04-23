@@ -25,7 +25,6 @@ jobs:
     name: Node
     uses: HarithaVattikuti/node-versions/.github/workflows/build-node-packages.yml@testnewversions
     with:
-      tool-name: "node"
       VERSION: ${{ inputs.VERSION || '16.20.0' }}
       PUBLISH_RELEASES: ${{ inputs.PUBLISH_RELEASES || false }}
 
