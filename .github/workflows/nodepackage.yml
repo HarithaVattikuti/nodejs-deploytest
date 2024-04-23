@@ -23,7 +23,7 @@ on:
 jobs:
   node:
     name: Node
-    uses: actions/node-versions/.github/workflows/build-tool-packages.yml@main
+    uses: actions/node-versions/.github/workflows/build-node-packages.yml@main
     with:
       tool-name: "node"
       tool-version: ${{ inputs.VERSION || '16.20.0' }}
