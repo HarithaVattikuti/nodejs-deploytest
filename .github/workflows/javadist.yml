@@ -31,8 +31,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: setup-java
-        uses: ./
-        id: setup-java
+        uses: actions/setup-java@v4
         with:
           java-version: ${{ matrix.version }}
           distribution: ${{ matrix.distribution }}
