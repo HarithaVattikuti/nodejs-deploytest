@@ -1,0 +1,41 @@
+name: Validate Java e2e
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  setup-java-major-versions:
+    name: ${{ matrix.distribution }} ${{ matrix.version }} (jdk-x64) - ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+        distribution: [
+            'temurin'
+          ] # internally 'adopt-hotspot' is the same as 'adopt'
+        version: ['21', '11', '17']
+        include:
+             # Add Semeru configuration here
+          - distribution: 'semeru'
+            os: macos-latest-large
+            version: '21'
+          - distribution: 'semeru'
+            os: macos-latest-large
+            version: '11'
+          - distribution: 'semeru'
+            os: macos-latest-large'
+            version: '17'
+         
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: setup-java
+        uses: ./
+        id: setup-java
+        with:
+          java-version: ${{ matrix.version }}
+          distribution: ${{ matrix.distribution }}
+      - name: Verify Java
+        run: bash __tests__/verify-java.sh "${{ matrix.version }}" "${{ steps.setup-java.outputs.path }}"
+        shell: bash
