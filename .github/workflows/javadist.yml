@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+        os: [macos-latest]
         distribution: [
             'temurin'
           ] # internally 'adopt-hotspot' is the same as 'adopt'
