@@ -1,0 +1,20 @@
+name: Java Semeru Arm64
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: ['macos-14']
+        jdk: ['8','11','17','21']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Java
+        uses: actions/setup-java@main
+        with:
+          distribution: 'semeru'
+          java-version: ${{ matrix.jdk }}
