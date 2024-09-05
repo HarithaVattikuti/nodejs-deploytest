@@ -1,0 +1,37 @@
+name: Validate Java e2e Sap
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  setup-java-major-versions:
+    name: ${{ matrix.distribution }} ${{ matrix.version }} (jdk-x64) - ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        distribution: [
+            'sapmachine'
+          ] # internally 'adopt-hotspot' is the same as 'adopt'
+        version: ['21', '11', '17']
+        include:
+             # Add Semeru configuration here
+          - distribution: 'sapmachine'
+            os: macos-latest-large
+            version: '21'
+          - distribution: 'sapmachine'
+            os: macos-latest-large
+            version: '11'
+          - distribution: 'sapmachine'
+            os: macos-latest-large'
+            version: '17'
+         
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: setup-java
+        uses: Shegox/setup-java@main
+        with:
+          java-version: ${{ matrix.version }}
+          distribution: ${{ matrix.distribution }}
