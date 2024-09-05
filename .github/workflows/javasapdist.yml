@@ -18,13 +18,13 @@ jobs:
         include:
              # Add Semeru configuration here
           - distribution: 'sapmachine'
-            os: macos-latest-large
+            os: macos-13
             version: '21'
           - distribution: 'sapmachine'
-            os: macos-latest-large
+            os: macos-13
             version: '11'
           - distribution: 'sapmachine'
-            os: macos-latest-large'
+            os: macos-13'
             version: '17'
          
     steps:
