@@ -4,6 +4,28 @@ on:
   workflow_dispatch:
   
 jobs:
+
+  setup-java-ea-versions-sapmachine:
+    name: sapmachine ${{ matrix.version }} (jdk-x64) - ${{ matrix.os }}
+    needs: setup-java-major-minor-versions
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+        version: ['17-ea', '21-ea']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: setup-java
+        uses: Shegox/setup-java@main
+        with:
+          java-version: ${{ matrix.version }}
+          distribution: sapmachine
+      - name: Verify Java
+        run: bash __tests__/verify-java.sh "${{ matrix.version }}" "${{ steps.setup-java.outputs.path }}"
+        shell: bash
+        
   setup-java-major-versions:
     name: ${{ matrix.distribution }} ${{ matrix.version }} (jdk-x64) - ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
