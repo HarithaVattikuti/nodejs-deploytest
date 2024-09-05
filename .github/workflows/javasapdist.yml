@@ -24,7 +24,7 @@ jobs:
             os: macos-13
             version: '11'
           - distribution: 'sapmachine'
-            os: macos-13'
+            os: macos-13
             version: '17'
          
     steps:
