@@ -1,0 +1,21 @@
+name: Java GraalVM 
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['macos-latest','ubuntu-latest','macos-13','windows-latest']
+        jdk: ['17','17.0.13','21']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Java
+        uses: actions/setup-java@main
+        with:
+          distribution: 'graalvm'
+          java-version: ${{ matrix.jdk }}
