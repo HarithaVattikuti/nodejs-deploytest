@@ -8,7 +8,7 @@ jobs:
     strategy:
         fail-fast: false
         matrix:
-          os: [ubuntu-latest,macos-latest,windows-latest,macos-13]
+          os: [ubuntu-latest,macos-latest,macos-13]
     steps:
       - name: Setup Java 
         uses: actions/setup-java@v4
@@ -31,7 +31,7 @@ jobs:
     strategy:
         fail-fast: false
         matrix:
-          os: [ubuntu-latest,macos-latest,windows-latest, macos-13]
+          os: [ubuntu-latest,macos-latest, macos-13]
     steps:
       - name: Setup Java 
         uses: actions/setup-java@v4
@@ -48,3 +48,26 @@ jobs:
         with:
           distribution: 'corretto'
           java-version: '17'
+
+  Corretto-21:
+    runs-on: ${{matrix.os}}
+    strategy:
+        fail-fast: false
+        matrix:
+          os: [ubuntu-latest,macos-latest, macos-13]
+    steps:
+      - name: Setup Java 
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: '21'
+      
+      - name: Check Runner ToolCache
+        run: |
+          ls -la $RUNNER_TOOL_CACHE/Java_Corretto_jdk/
+
+      - name: Setup Java Again
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: '21'
