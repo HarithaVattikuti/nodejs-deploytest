@@ -49,25 +49,3 @@ jobs:
           distribution: 'corretto'
           java-version: '17'
 
-  Corretto-11:
-    runs-on: ${{matrix.os}}
-    strategy:
-        fail-fast: false
-        matrix:
-          os: [ubuntu-latest,macos-latest, macos-13]
-    steps:
-      - name: Setup Java 
-        uses: HarithaVattikuti/setup-java@testcorretto
-        with:
-          distribution: 'corretto'
-          java-version: '11'
-      
-      - name: Check Runner ToolCache
-        run: |
-          ls -la $RUNNER_TOOL_CACHE/Java_Corretto_jdk/
-
-      - name: Setup Java Again
-        uses: HarithaVattikuti/setup-java@testcorretto
-        with:
-          distribution: 'corretto'
-          java-version: '11'
