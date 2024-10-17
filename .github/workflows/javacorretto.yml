@@ -1,0 +1,42 @@
+name: Java Corretto cache
+
+on: 
+  workflow_dispatch:
+jobs:
+  Corretto-8:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Java 
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: '8'
+      
+      - name: Check Runner ToolCache
+        run: |
+          ls -la $RUNNER_TOOL_CACHE/Java_Corretto_jdk/
+
+      - name: Setup Java Again
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: '8'
+
+  Corretto-17:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Java 
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: '17'
+      
+      - name: Check Runner ToolCache
+        run: |
+          ls -la $RUNNER_TOOL_CACHE/Java_Corretto_jdk/
+
+      - name: Setup Java Again
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: '17'
