@@ -11,7 +11,7 @@ jobs:
           os: [ubuntu-latest,macos-latest,macos-13]
     steps:
       - name: Setup Java 
-        uses: actions/setup-java@v4
+        uses: HarithaVattikuti/setup-java@testcorretto
         with:
           distribution: 'corretto'
           java-version: '8'
@@ -21,7 +21,7 @@ jobs:
           ls -la $RUNNER_TOOL_CACHE/Java_Corretto_jdk/
 
       - name: Setup Java Again
-        uses: actions/setup-java@v4
+        uses: HarithaVattikuti/setup-java@testcorretto
         with:
           distribution: 'corretto'
           java-version: '8'
@@ -34,7 +34,7 @@ jobs:
           os: [ubuntu-latest,macos-latest, macos-13]
     steps:
       - name: Setup Java 
-        uses: actions/setup-java@v4
+        uses: HarithaVattikuti/setup-java@testcorretto
         with:
           distribution: 'corretto'
           java-version: '17'
@@ -44,12 +44,12 @@ jobs:
           ls -la $RUNNER_TOOL_CACHE/Java_Corretto_jdk/
 
       - name: Setup Java Again
-        uses: actions/setup-java@v4
+        uses: HarithaVattikuti/setup-java@testcorretto
         with:
           distribution: 'corretto'
           java-version: '17'
 
-  Corretto-21:
+  Corretto-11:
     runs-on: ${{matrix.os}}
     strategy:
         fail-fast: false
@@ -57,17 +57,17 @@ jobs:
           os: [ubuntu-latest,macos-latest, macos-13]
     steps:
       - name: Setup Java 
-        uses: actions/setup-java@v4
+        uses: HarithaVattikuti/setup-java@testcorretto
         with:
           distribution: 'corretto'
-          java-version: '21'
+          java-version: '11'
       
       - name: Check Runner ToolCache
         run: |
           ls -la $RUNNER_TOOL_CACHE/Java_Corretto_jdk/
 
       - name: Setup Java Again
-        uses: actions/setup-java@v4
+        uses: HarithaVattikuti/setup-java@testcorretto
         with:
           distribution: 'corretto'
-          java-version: '21'
+          java-version: '11'
