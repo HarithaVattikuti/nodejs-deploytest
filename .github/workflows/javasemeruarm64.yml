@@ -8,13 +8,24 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: ['macos-14']
+        os: ['macos-13','ubuntu-latest','windows-latest']
         jdk: ['8','11','17','21']
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Java
-        uses: actions/setup-java@main
+        uses: HarithaVattikuti/setup-java@testcorretto
         with:
           distribution: 'semeru'
           java-version: ${{ matrix.jdk }}
+
+      - name: Check Runner ToolCache
+        run: |
+          ls -la $RUNNER_TOOL_CACHE/Java_Semeru_jdk/
+
+      - name: Setup Java Again
+        uses: HarithaVattikuti/setup-java@testcorretto
+        with:
+          distribution: 'semeru'
+          java-version:  ${{ matrix.jdk }}
+
