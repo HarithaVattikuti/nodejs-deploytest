@@ -22,8 +22,8 @@ jobs:
 
       - name: Check toolcache folder
         run: |
-          echo "Files in /opt/hostedtoolcache/Java_Corretto_jdk/8.432.06-1/x64:"
-          ls -la /opt/hostedtoolcache/Java_Corretto_jdk/8.432.06-1/x64
+          echo "Files in $RUNNER_TOOL_CACHE/Java_Corretto_jdk/8.432.06-1/x64:"
+          ls -la $RUNNER_TOOL_CACHE/Java_Corretto_jdk/8.432.06-1/x64
 
       - name: Setup Java Again
         uses: HarithaVattikuti/setup-java@testcorretto
@@ -50,8 +50,8 @@ jobs:
 
       - name: Check toolcache folder
         run: |
-          echo "Files in /opt/hostedtoolcache/Java_Corretto_jdk/17.0.13-11.1/x64:"
-          ls -la /opt/hostedtoolcache/Java_Corretto_jdk/17.0.13-11.1/x64
+          echo "Files in $RUNNER_TOOL_CACHE/Java_Corretto_jdk/17.0.13-11.1/x64:"
+          ls -la $RUNNER_TOOL_CACHE/Java_Corretto_jdk/17.0.13-11.1/x64
 
       - name: Setup Java Again
         uses: HarithaVattikuti/setup-java@testcorretto
