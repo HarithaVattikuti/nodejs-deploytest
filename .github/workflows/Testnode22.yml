@@ -5,7 +5,11 @@ on:
 
 jobs:
   test:
-    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-13, macos-latest, ubuntu-latest, ubuntu-24.04]
+    runs-on: ${{matrix.os}}
 
     steps:
       - uses: actions/checkout@v4
@@ -15,5 +19,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
             node-version: 18
+            check-latest: true
 
       - run: npm ci
