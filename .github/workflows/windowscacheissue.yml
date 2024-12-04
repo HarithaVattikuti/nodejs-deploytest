@@ -1,0 +1,24 @@
+name: Windows cache test
+on:
+  workflow_dispatch: 
+jobs:
+  test:
+    name: Node ${{ matrix.node }} ${{ matrix.arch }} on ${{ matrix.os }}
+    timeout-minutes: 5
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        arch:
+        - x64
+        os:
+        - windows-latest
+        node:
+        - '14.18'
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Node.js ${{ matrix.node }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node }}
+        architecture: ${{ matrix.arch }}
+        check-latest: ${{ matrix.node == '*' }}
