@@ -1,0 +1,62 @@
+name: Test node dist
+
+on:
+  workflow_dispatch:
+
+jobs:
+  testlatest:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-13, macos-latest, ubuntu-latest, ubuntu-24.04]
+    runs-on: ${{matrix.os}}
+
+    steps:
+      - uses: actions/checkout@v4
+        #with:
+         # submodules: true
+
+      - uses: actions/setup-node@v4
+        with:
+            node-version: 'latest'
+            #check-latest: true
+
+      - run: npm ci
+
+  testnode:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-13, macos-latest, ubuntu-latest, ubuntu-24.04]
+    runs-on: ${{matrix.os}}
+
+    steps:
+      - uses: actions/checkout@v4
+        #with:
+         # submodules: true
+
+      - uses: actions/setup-node@v4
+        with:
+            node-version: 'node'
+            #check-latest: true
+
+      - run: npm ci
+
+  testcurrent:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-13, macos-latest, ubuntu-latest, ubuntu-24.04]
+    runs-on: ${{matrix.os}}
+
+    steps:
+      - uses: actions/checkout@v4
+        #with:
+         # submodules: true
+
+      - uses: actions/setup-node@v4
+        with:
+            node-version: 'current'
+            #check-latest: true
+
+      - run: npm ci
