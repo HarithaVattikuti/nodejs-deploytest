@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest, macos-13, macos-latest, ubuntu-latest, ubuntu-24.04]
+        os: [windows-latest, macos-13, macos-latest, ubuntu-latest]
     runs-on: ${{matrix.os}}
 
     steps:
@@ -27,7 +27,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest, macos-13, macos-latest, ubuntu-latest, ubuntu-24.04]
+        os: [windows-latest, macos-13, macos-latest, ubuntu-latest]
     runs-on: ${{matrix.os}}
 
     steps:
@@ -46,7 +46,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest, macos-13, macos-latest, ubuntu-latest, ubuntu-24.04]
+        os: [windows-latest, macos-13, macos-latest, ubuntu-latest]
     runs-on: ${{matrix.os}}
 
     steps:
@@ -60,3 +60,38 @@ jobs:
             #check-latest: true
 
       - run: npm ci
+
+  testchecklatest22:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-13,ubuntu-latest]
+    runs-on: ${{matrix.os}}
+
+    steps:
+      - uses: actions/checkout@v4
+        #with:
+         # submodules: true
+
+      - uses: actions/setup-node@v4
+        with:
+            node-version: '22'
+            check-latest: true
+
+  testchecklatest23:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-13,ubuntu-latest]
+    runs-on: ${{matrix.os}}
+
+    steps:
+      - uses: actions/checkout@v4
+        #with:
+         # submodules: true
+
+      - uses: actions/setup-node@v4
+        with:
+            node-version: '23'
+            check-latest: true
+
