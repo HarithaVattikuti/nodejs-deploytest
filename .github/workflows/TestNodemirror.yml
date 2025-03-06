@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest, macos-13]
-        version: ['20','latest','current','23','node','18.0.0-rc.2']
+        version: ['22','latest','current','23','node','18.0.0-rc.2']
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -18,13 +18,15 @@ jobs:
         uses: aparnajyothi-y/setup-node@add-mirror-url
         with:
           node-version: ${{ matrix.version }}
+      - name: Verify Node.js installation
+        run: node -v   
 
   setup-nodeversionmirror:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest, macos-13]
-        version: ['20','latest','current','23','node','18.0.0-rc.2']
+        version: ['22','latest','current','23','node']
 
     steps:
       - name: Checkout code
@@ -34,4 +36,25 @@ jobs:
         uses: aparnajyothi-y/setup-node@add-mirror-url
         with:
           node-version: ${{ matrix.version }}
-          mirror-url: 'https://nodejs.org/download/rc'
+          mirror-url: 'https://nodejs.org/dist/'
+      - name: Verify Node.js installation
+        run: node -v  
+
+  setup-nodeversionmirrormarco:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest, macos-13]
+        version: ['22','latest','current','23','node']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js with mirrorURL
+        uses: marco-ippolito/setup-node@mirror
+        with:
+          node-version: ${{ matrix.version }}
+          mirror-url: 'https://nodejs.org/dist/'
+      - name: Verify Node.js installation
+        run: node -v  
