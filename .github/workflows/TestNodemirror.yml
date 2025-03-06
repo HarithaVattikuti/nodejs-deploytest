@@ -4,29 +4,29 @@ on:
   workflow_dispatch:
 
 jobs:
-  setup-nodeversion:
+  testreg:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest, macos-13]
-        version: ['22','latest','current','23','node','18.0.0-rc.2']
+        version: ['22','latest','current','23','node','18.0.0-rc.2','lts/*']
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up Node.js with mirrorURL
-        uses: aparnajyothi-y/setup-node@add-mirror-url
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.version }}
       - name: Verify Node.js installation
         run: node -v   
 
-  setup-nodeversionmirror:
+  testaparnamirror:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest, macos-13]
-        version: ['22','latest','current','23','node']
+        version: ['22','latest','current','23','node','lts/*']
 
     steps:
       - name: Checkout code
@@ -40,12 +40,12 @@ jobs:
       - name: Verify Node.js installation
         run: node -v  
 
-  setup-nodeversionmirrormarco:
+  testmarcomirror:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest, macos-13]
-        version: ['22','latest','current','23','node']
+        version: ['22','latest','current','23','node','lts/*']
 
     steps:
       - name: Checkout code
