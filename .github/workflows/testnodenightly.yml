@@ -1,0 +1,23 @@
+name: Test Setup Node nightly
+
+on:
+  workflow_dispatch:
+
+jobs:
+  testreg:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest, macos-13]
+        version: ['20.11.0-nightly202312211a0be537da']
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js with mirrorURL
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.version }}
+      - name: Verify Node.js installation
+        run: node -v 
