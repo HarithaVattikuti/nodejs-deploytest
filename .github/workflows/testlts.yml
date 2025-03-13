@@ -27,4 +27,3 @@ jobs:
           node-version: ${{ matrix.node }}
           check-latest: true
        - run: npm ci
-       - run: npm run build
