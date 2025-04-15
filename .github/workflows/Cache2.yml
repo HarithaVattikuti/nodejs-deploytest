@@ -7,6 +7,19 @@ on:
   workflow_dispatch:
       
 jobs:
+   test-issuev4:
+     runs-on: ubuntu-latest
+
+     steps:
+       - name: Checkout repo
+         uses: actions/checkout@v4
+       # - uses: HarithaVattikuti/setup-node@TestArchKey
+       - uses: actions/setup-node@v4
+         with:
+           node-version: ${{ env.NODE_VERSION }}
+           cache: 'npm'
+           cache-dependancy-path: ${{ env.repo_dir }}/package-lock.json
+
    test-issuev3:
      runs-on: ubuntu-latest
 
