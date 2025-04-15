@@ -12,8 +12,9 @@ jobs:
 
      steps:
        - name: Checkout repo
-         uses: actions/checkout@v3
-       - uses: HarithaVattikuti/setup-node@TestArchKey
+         uses: actions/checkout@v4
+       # - uses: HarithaVattikuti/setup-node@TestArchKey
+       - uses: actions/setup-node@v3
          with:
            node-version: ${{ env.NODE_VERSION }}
            cache: 'npm'
