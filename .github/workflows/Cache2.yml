@@ -75,7 +75,7 @@ jobs:
        - name: Checkout repo
          uses: actions/checkout@v4
        # - uses: HarithaVattikuti/setup-node@TestArchKey
-       - uses: actions/setup-node@dbe1369d7be17e7823f8c1ee1ae8bec5779239dd
+       - uses: actions/setup-node@v3.9.0
          with:
            node-version: ${{ env.NODE_VERSION }}
            cache: 'npm'
