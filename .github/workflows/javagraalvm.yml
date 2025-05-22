@@ -11,11 +11,12 @@ jobs:
       matrix:
         os: ['macos-latest','ubuntu-latest','macos-13','windows-latest']
         jdk: ['17','17-ea','21-ea','21']
+        distribution: [ 'jetbrains' , 'adopt', 'zulu', 'temurin', 'corretto', 'liberica', 'oracle', 'microsoft', 'semeru', 'dragonwell', 'sapmachine', graalvm]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Java
-        uses: actions/setup-java@main
+        uses: actions/setup-java@v4
         with:
-          distribution: 'graalvm'
+          distribution: ${{matrix.distribution}}
           java-version: ${{ matrix.jdk }}
