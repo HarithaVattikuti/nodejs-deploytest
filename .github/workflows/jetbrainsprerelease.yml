@@ -1,0 +1,43 @@
+name: JetBrains Pre release Check
+
+on:
+  workflow_dispatch:
+
+jobs:
+  buildmain:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-13, ubuntu-latest, windows-latest, macos-latest]
+        version: [21]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+            distribution: jetbrains
+            java-version: ${{ matrix.version }}
+            check-latest: true
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  buildprerelease:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-13, ubuntu-latest, windows-latest, macos-latest]
+        version: [21]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Java
+        uses: HarithaVattikuti/setup-java@jetbrainstest
+        with:
+            distribution: jetbrains
+            java-version: ${{ matrix.version }}
+            check-latest: true
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
