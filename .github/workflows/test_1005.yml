@@ -48,3 +48,6 @@ jobs:
           pip --version
           pip install --upgrade setuptools>=74 wheel
           
+      - name: Build and installAdd commentMore actions
+        run: pip install . -v --user
+        
