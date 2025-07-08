@@ -10,7 +10,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ['macos-latest','ubuntu-latest','macos-13','windows-latest']
-        jdk: ['17','17-ea','21-ea','21','7','11']
+        jdk: ['17','21','7','11']
         distribution: [ 'jetbrains' , 'adopt', 'zulu', 'temurin', 'corretto', 'liberica', 'oracle', 'microsoft', 'semeru', 'dragonwell', 'sapmachine', graalvm]
     steps:
       - name: Checkout
