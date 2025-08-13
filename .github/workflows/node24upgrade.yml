@@ -29,7 +29,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
-          cache-dependency-path : requirements.txt
         
       - name: Confirm Node version
         run: |
