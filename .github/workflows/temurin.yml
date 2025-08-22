@@ -37,7 +37,7 @@ jobs:
       - name: Clear toolcache
         run: |
           echo "Removing toolcache (requires appropriate permissions)..."
-          sudo rm -rf /opt/hostedtoolcache/Java_Temurin_* || true
+          sudo rm -rf /home/azureuser/_work/_tool || true
       - uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
