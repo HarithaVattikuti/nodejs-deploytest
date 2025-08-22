@@ -1,0 +1,21 @@
+name: Test package manager
+
+on:
+  workflow_dispatch:
+
+jobs:
+  buildonv4:
+    runs-on: ${{ matrix.os}}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['ubuntu-latest','macos-latest','windows-latest']
+
+    steps:
+      - name: Setup Checkout
+        uses: actions/checkout@v4
+     
+      - uses: priya-kinthali/setup-node@package-manager-field-caching
+        with:
+          node-version: '24'
+  
