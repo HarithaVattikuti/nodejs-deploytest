@@ -14,6 +14,10 @@ jobs:
     steps:
       - name: Setup Checkout
         uses: actions/checkout@v4
+      - name: Clear toolcache
+        run: |
+          echo "Removing toolcache (requires appropriate permissions)..."
+          sudo rm -rf /opt/hostedtoolcache/Java_Temurin_* || true
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
@@ -30,6 +34,10 @@ jobs:
     steps:
       - name: Setup Checkout
         uses: actions/checkout@v5
+      - name: Clear toolcache
+        run: |
+          echo "Removing toolcache (requires appropriate permissions)..."
+          sudo rm -rf /opt/hostedtoolcache/Java_Temurin_* || true
       - uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
