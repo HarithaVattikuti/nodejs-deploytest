@@ -24,7 +24,6 @@ jobs:
           - 18.20.0
           - 17
           - 19
-          - current
     steps:
       - uses: actions/checkout@v5
       - name: Setup Node
