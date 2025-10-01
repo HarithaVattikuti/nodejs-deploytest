@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest, macos-13]
+        os: [macos-latest]
         node-version:
           - 20-v8-canary
           - 24-v8-canary
@@ -17,10 +17,18 @@ jobs:
           - 20.0.0-v8-canary
           - 20.0.0-v8-canary20221101e50e45c9f8
           - 24.0.0-v8-canary2025030537242e55ac
+          - 20.0.0-v8-canary2023041819be670741
+          - 20-nightly
+          - 18-nightly
+          - 19.0.0-rc.0
+          - 18.20.0
+          - 17
+          - 19
+          - current
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: ${{ matrix.node-version }}
       - name: Verify node and npm
