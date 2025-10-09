@@ -18,5 +18,5 @@ jobs:
       - uses: priyagupta108/setup-node@enable-npm-cache-default
         with:
           node-version: '24'
-          #package-manager-cache: false
+          package-manager-cache: true
   
