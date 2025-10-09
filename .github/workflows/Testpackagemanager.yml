@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Setup Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
      
       - uses: priyagupta108/setup-node@enable-npm-cache-default
         with:
