@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ['ubuntu-latest','macos-latest','windows-latest']
+        os: ['ubuntu-latest','macos-latest','windows-latest', 'macos-13']
 
     steps:
       - name: Setup Checkout
@@ -18,5 +18,5 @@ jobs:
       - uses: priyagupta108/setup-node@enable-npm-cache-default
         with:
           node-version: '24'
-          package-manager-cache: false
+          #package-manager-cache: false
   
