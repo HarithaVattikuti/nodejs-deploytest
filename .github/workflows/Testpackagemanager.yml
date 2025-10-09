@@ -15,7 +15,7 @@ jobs:
       - name: Setup Checkout
         uses: actions/checkout@v4
      
-      - uses: priya-kinthali/setup-node@package-manager-field-caching
+      - uses: priyagupta108/setup-node@enable-npm-cache-default
         with:
           node-version: '24'
           package-manager-cache: false
