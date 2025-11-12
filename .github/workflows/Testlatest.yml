@@ -1,0 +1,23 @@
+name: Test Setup Node latest
+
+on:
+  workflow_dispatch:
+
+jobs:
+  testreg:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        version: ['22','current','23','node','18.0.0-rc.2','lts/*','v25.0.0-nightly','24']
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js with mirrorURL
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.version }}
+      - name: Verify Node.js installation
+        run: node -v  
