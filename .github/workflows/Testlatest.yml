@@ -19,5 +19,6 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.version }}
+          check-latest: true
       - name: Verify Node.js installation
         run: node -v  
