@@ -39,7 +39,6 @@ jobs:
       - run: |
             ls -la $HOME/actions-runner
             ls -la $HOME/actions-runner/cached
-            ls -la $HOME/actions-runner/cached/2.330.0
             ls -la $HOME/actions-runner/extracted
             ls -la $HOME/actions-runner/extracted/_diag
             ls -la $HOME/actions-runner/extracted/_diag/pages
@@ -47,6 +46,47 @@ jobs:
       - name: Find runner.listener logs
         run: |
             find $HOME/actions-runner -type f -iname "*listener*"
+            
+      - name: Test Runner.Listener Process
+        shell: pwsh
+        run: |       
+          # Get the process information for Runner.Listener
+          $process = Get-Process -Name "Runner.Listener" -ErrorAction SilentlyContinue
+
+          if ($process) {
+              Write-Host "Runner.Listener process is running."
+
+              # Check for _diag folder under "extracted"
+              $extractedDiagPath = Join-Path -Path $HOME -ChildPath "actions-runner/extracted/_diag"
+              $cachedBasePath = Join-Path -Path $HOME -ChildPath "actions-runner/cached"
+
+              if (Test-Path -Path $extractedDiagPath) {
+                  Write-Host "_diag folder found under 'extracted': $extractedDiagPath"
+              } elseif (Test-Path -Path $cachedBasePath) {
+                  # Check for _diag folder under each version folder in "cached"
+                  $cachedDiagPaths = Get-ChildItem -Path $cachedBasePath -Directory | ForEach-Object {
+                      Join-Path -Path $_.FullName -ChildPath "_diag"
+                  }
+                  Write-Host "cachedDiagPaths 'cached': $cachedDiagPaths"
+
+                  $diagFound = $false
+                  foreach ($diagPath in $cachedDiagPaths) {
+                      if (Test-Path -Path $diagPath) {
+                          Write-Host "_diag folder found under 'cached': $diagPath"
+                          $diagFound = $true
+                          break
+                      }
+                  }
+
+                  if (-not $diagFound) {
+                      Write-Host "No _diag folder found under 'cached'."
+                  }
+              } else {
+                  Write-Host "No _diag folder found under 'extracted' or 'cached'."
+              }
+          } else {
+              Write-Host "Runner.Listener process is not running."
+          }
 
   Windows:
     runs-on: ${{ matrix.os }}
