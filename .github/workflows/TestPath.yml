@@ -61,9 +61,7 @@ jobs:
               $extractedDiagPath = Join-Path -Path $HOME -ChildPath "actions-runner/extracted/_diag"
               $cachedBasePath = Join-Path -Path $HOME -ChildPath "actions-runner/cached"
 
-              if (Test-Path -Path $extractedDiagPath) {
-                  Write-Host "_diag folder found under 'extracted': $extractedDiagPath"
-              } elseif (Test-Path -Path $cachedBasePath) {
+              if (Test-Path -Path $cachedBasePath) {
                   # Check for _diag folder under each version folder in "cached"
                   $cachedDiagPaths = Get-ChildItem -Path $cachedBasePath -Directory | ForEach-Object {
                       Join-Path -Path $_.FullName -ChildPath "_diag"
@@ -82,7 +80,9 @@ jobs:
                   if (-not $diagFound) {
                       Write-Host "No _diag folder found under 'cached'."
                   }
-              } else {
+              } elseif (Test-Path -Path $extractedDiagPath) {
+                  Write-Host "_diag folder found under 'extracted': $extractedDiagPath"
+              } else{
                   Write-Host "No _diag folder found under 'extracted' or 'cached'."
               }
           } else {
