@@ -19,6 +19,9 @@ jobs:
       - run: |
             ls -la $HOME/actions-runner
             ls -la $HOME/actions-runner/cached
+            ls -la $HOME/actions-runner/cached/_diag
+            ls -la $HOME/actions-runner/cached/_diag/pages
+
 
 
   Ubuntuarm64:
@@ -37,6 +40,8 @@ jobs:
             ls -la $HOME/actions-runner
             ls -la $HOME/actions-runner/cached
             ls -la $HOME/actions-runner/extracted
+            ls -la $HOME/actions-runner/extracted/_diag
+            ls -la $HOME/actions-runner/extracted/_diag/pages
 
   Windows:
     runs-on: ${{ matrix.os }}
@@ -53,5 +58,7 @@ jobs:
       - run: |
             Get-ChildItem C:\actions-runner -Force
             Get-ChildItem C:\actions-runner\cached -Force
+            Get-ChildItem C:\actions-runner\cached\_diag -Force
+            Get-ChildItem C:\actions-runner\cached\_diag\pages -Force
 
 
