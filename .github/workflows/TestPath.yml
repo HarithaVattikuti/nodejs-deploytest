@@ -52,4 +52,6 @@ jobs:
           printenv | sort
       - run: |
             Get-ChildItem C:\actions-runner -Force
+            Get-ChildItem C:\actions-runner\cached -Force
+
 
