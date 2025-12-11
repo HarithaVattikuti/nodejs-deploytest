@@ -48,47 +48,41 @@ jobs:
         run: |
             find $HOME/actions-runner -type f -iname "*listener*"
             
-      - name: Test Runner.Listener Process
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Check Runner.Listener and _diag Folder
         shell: pwsh
-        run: |       
+        run: |
+          
           # Get the process information for Runner.Listener
           $process = Get-Process -Name "Runner.Listener" -ErrorAction SilentlyContinue
 
           if ($process) {
-              Write-Host "Runner.Listener process is running."
-
-              # Check for _diag folder under "extracted"
-              $extractedDiagPath = Join-Path -Path $HOME -ChildPath "actions-runner/extracted/_diag"
-              $cachedBasePath = Join-Path -Path $HOME -ChildPath "actions-runner/cached"
-
-              if (Test-Path -Path $cachedBasePath) {
-                  # Check for _diag folder under each version folder in "cached"
-                  $cachedDiagPaths = Get-ChildItem -Path $cachedBasePath -Directory | ForEach-Object {
-                      Join-Path -Path $_.FullName -ChildPath "_diag"
-                  }
-                  Write-Host "cachedDiagPaths 'cached': $cachedDiagPaths"
-
-                  $diagFound = $false
-                  foreach ($diagPath in $cachedDiagPaths) {
-                      if (Test-Path -Path $diagPath) {
-                          Write-Host "_diag folder found under 'cached': $diagPath"
-                          $diagFound = $true
-                          break
-                      }
-                  }
-
-                  if (-not $diagFound) {
-                      Write-Host "No _diag folder found under 'cached'."
-                  }
-              } elseif (Test-Path -Path $extractedDiagPath) {
-                  Write-Host "_diag folder found under 'extracted': $extractedDiagPath"
-              } else{
-                  Write-Host "No _diag folder found under 'extracted' or 'cached'."
-              }
+            Write-Host "Runner.Listener process is running."
+        
+            # Get the working directory of the Runner.Listener process
+            $runnerDir = Split-Path -Path $process.Path -Parent
+            Write-Host "Runner.Listener is located in: $runnerDir"
+        
+            # Check if the Runner.Listener process is running under HOME
+            if ($runnerDir -like "$HOME*") {
+                Write-Host "Runner.Listener process is running under $HOME."
+            } else {
+                Write-Host "Runner.Listener process is NOT running under $HOME."
+            }
+        
+            # Check for the _diag folder under the Runner.Listener directory
+            $diagFolderPath = Join-Path -Path $runnerDir -ChildPath "_diag"
+            if (Test-Path -Path $diagFolderPath) {
+                Write-Host "_diag folder found at: $diagFolderPath"
+            } else {
+                Write-Host "_diag folder not found under the Runner.Listener directory."
+            }
           } else {
-              Write-Host "Runner.Listener process is not running."
+            Write-Host "Runner.Listener process is not running."
           }
-
+          
   Windows:
     runs-on: ${{ matrix.os }}
     strategy:
