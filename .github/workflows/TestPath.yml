@@ -43,6 +43,10 @@ jobs:
             ls -la $HOME/actions-runner/extracted/_diag
             ls -la $HOME/actions-runner/extracted/_diag/pages
 
+      - name: Find runner.listener logs
+        run: |
+            find $HOME/actions-runner -type f -iname "*listener*"
+
   Windows:
     runs-on: ${{ matrix.os }}
     strategy:
