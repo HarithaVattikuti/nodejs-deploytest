@@ -72,8 +72,12 @@ jobs:
                 Write-Host "Runner.Listener process is NOT running under $HOME."
             }
         
+                # Move one level up from the 'bin' directory
+            $parentDir = Split-Path -Path $runnerDir -Parent
+            Write-Host "Searching for _diag folder in: $parentDir"
+
             # Check for the _diag folder under the Runner.Listener directory
-            $diagFolderPath = Join-Path -Path $runnerDir -ChildPath "_diag"
+            $diagFolderPath = Join-Path -Path $parentDir -ChildPath "_diag"
             if (Test-Path -Path $diagFolderPath) {
                 Write-Host "_diag folder found at: $diagFolderPath"
             } else {
