@@ -39,6 +39,7 @@ jobs:
       - run: |
             ls -la $HOME/actions-runner
             ls -la $HOME/actions-runner/cached
+            ls -la $HOME/actions-runner/cached/2.330.0
             ls -la $HOME/actions-runner/extracted
             ls -la $HOME/actions-runner/extracted/_diag
             ls -la $HOME/actions-runner/extracted/_diag/pages
