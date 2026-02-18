@@ -1,0 +1,35 @@
+name: Same version on all Ubuntu runners
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: ['24.x', '24', '']
+        os: [ubuntu-slim, ubuntu-latest]
+
+    steps:
+      - uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node-version }}
+      
+      - run: node -v
+
+  testsame:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-slim, ubuntu-latest]
+
+    steps:
+      - uses: actions/setup-node@v6
+      
+      - run: node -v
