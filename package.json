@@ -12,10 +12,7 @@
   "dependencies": {
     "express": "^4.18.2"
   },
-  "devEngines": {
-    "runtime": {
-      "name": "node",
-      "version": "^24.3"
-    }
-  }  
+  "engines": {
+  "node": "^14.21.3"
+  }
 }
